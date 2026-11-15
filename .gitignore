@@ -1,0 +1,27 @@
+# Python virtual environments — never commit these
+**/.venv/
+.venv/
+venv/
+
+# Python bytecode / caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Dependencies — never commit these
+node_modules/
+**/node_modules/
+
+# Runtime caches / logs
+*.log
+.DS_Store
+coverage/
+
+# Secrets — never commit
+.env
+.env.*
+*.env
+# (exception: a placeholder example is fine if it contains no real value)
+.env.example

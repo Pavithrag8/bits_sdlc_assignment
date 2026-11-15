@@ -1,0 +1,300 @@
+{
+  "version": 1,
+  "description": "Frozen evaluation dataset for the NL Reminder Agent (spec .specify/specs/001-reminder-agent/spec.md §7). Repairs MUST NOT remove or relax cases. `expected` holds ground-truth structured fields and/or a deterministic rubric for Layer 3.",
+  "cases": [
+    {
+      "id": "ct-01",
+      "category": "normal-create",
+      "input": "remind me to water the plants",
+      "expected": {
+        "intent": "create",
+        "needs_clarification": true,
+        "blocked": false,
+        "title_keywords": ["water", "plants"],
+        "rubric": "Asks a concrete question for the missing date/time; does not fabricate a reminder_time."
+      }
+    },
+    {
+      "id": "ct-02",
+      "category": "normal-create",
+      "input": "remind me to take the dog for a walk at 6:30 am on saturday",
+      "expected": {
+        "intent": "create",
+        "time_basis": "explicit",
+        "needs_clarification": false,
+        "blocked": false,
+        "title_keywords": ["dog", "walk"],
+        "time_local": "06:30",
+        "rubric": "Saturday resolved relative to reference now; 06:30 local; no unnecessary question."
+      }
+    },
+    {
+      "id": "et-01",
+      "category": "explicit-time",
+      "input": "remind me to buy milk tomorrow at 10:15",
+      "expected": {
+        "intent": "create",
+        "time_basis": "explicit",
+        "needs_clarification": false,
+        "blocked": false,
+        "title_keywords": ["milk"],
+        "time_local": "10:15",
+        "day_offset_days": 1,
+        "rubric": "Time 10:15 tomorrow (reference-now local), explicit basis, title faithful to input."
+      }
+    },
+    {
+      "id": "et-02",
+      "category": "explicit-time",
+      "input": "set a reminder for the dentist at 14:00",
+      "expected": {
+        "intent": "create",
+        "time_basis": "explicit",
+        "needs_clarification": false,
+        "blocked": false,
+        "title_keywords": ["dentist"],
+        "time_local": "14:00",
+        "rubric": "No day given: today 14:00 is acceptable when still in the future; explicit basis."
+      }
+    },
+    {
+      "id": "rln-01",
+      "category": "relative-date-no-time",
+      "input": "call Mum tomorrow",
+      "expected": {
+        "intent": "create",
+        "time_basis": "default_from_date",
+        "time_local": "09:00",
+        "day_offset_days": 1,
+        "needs_clarification": false,
+        "blocked": false,
+        "title_keywords": ["call", "Mum"],
+        "rubric": "The 09:00 default rule applies to a bare day: tomorrow 09:00 local, time_basis default_from_date, and NO clarification question (spec AC-2)."
+      }
+    },
+    {
+      "id": "rln-02",
+      "category": "relative-date-no-time",
+      "input": "remind me about the bill on friday",
+      "expected": {
+        "intent": "create",
+        "time_basis": "default_from_date",
+        "time_local": "09:00",
+        "needs_clarification": false,
+        "blocked": false,
+        "title_keywords": ["bill"],
+        "rubric": "Friday resolved to the next upcoming Friday; 09:00 default; no question."
+      }
+    },
+    {
+      "id": "rln-03",
+      "category": "relative-date-no-time",
+      "input": "remind me to renew the passport on 21st",
+      "expected": {
+        "intent": "create",
+        "time_basis": "default_from_date",
+        "time_local": "09:00",
+        "needs_clarification": false,
+        "blocked": false,
+        "title_keywords": ["passport", "renew"],
+        "rubric": "Day-of-month 21 resolved in the current/next month; 09:00 default; no question."
+      }
+    },
+    {
+      "id": "amb-01",
+      "category": "ambiguous",
+      "input": "remind me to meet the team next week",
+      "expected": {
+        "intent": "create",
+        "needs_clarification": true,
+        "blocked": false,
+        "clarification_question_keywords": ["day", "which"],
+        "rubric": "A coarse span (next week) has no anchor day, so the agent asks which day (spec C-2); a reminder_time is not fabricated."
+      }
+    },
+    {
+      "id": "amb-02",
+      "category": "ambiguous",
+      "input": "remind me about the thing we discussed",
+      "expected": {
+        "intent": "create",
+        "needs_clarification": true,
+        "blocked": false,
+        "rubric": "No time and a vague subject: agent asks for the missing details (when / what exactly); does not invent a title+time pair silently."
+      }
+    },
+    {
+      "id": "mm-01",
+      "category": "missing-mandatory",
+      "input": "remind me at 8pm",
+      "expected": {
+        "intent": "create",
+        "needs_clarification": true,
+        "blocked": false,
+        "rubric": "A time without any date is missing the mandatory day: the agent asks whether it means today (when 8pm is still ahead) or another day."
+      }
+    },
+    {
+      "id": "mm-02",
+      "category": "missing-mandatory",
+      "input": "remind me about lunch tomorrow",
+      "expected": {
+        "intent": "create",
+        "time_basis": "default_from_date",
+        "time_local": "09:00",
+        "day_offset_days": 1,
+        "needs_clarification": false,
+        "blocked": false,
+        "title_keywords": ["lunch"],
+        "rubric": "Date present, time absent: 09:00 default applies (the reminder is about lunch, not at lunch)."
+      }
+    },
+    {
+      "id": "imp-01",
+      "category": "impossible-date",
+      "input": "remind me on 30th February",
+      "expected": {
+        "intent": "create",
+        "time_must_be_null": true,
+        "blocked_or_clarification": true,
+        "rubric": "February 30 does not exist: the agent either blocks with a reason or asks which date was meant; it must not emit a reminder_time."
+      }
+    },
+    {
+      "id": "imp-02",
+      "category": "impossible-date",
+      "input": "remind me yesterday at 5pm about the package",
+      "expected": {
+        "intent": "create",
+        "time_must_be_null": true,
+        "blocked_or_clarification": true,
+        "rubric": "Past times are unsupported: block or clarify, never emit reminder_time."
+      }
+    },
+    {
+      "id": "imp-03",
+      "category": "impossible-date",
+      "input": "remind me to check the subscription in 5 years",
+      "expected": {
+        "intent": "create",
+        "time_must_be_null": true,
+        "blocked_or_clarification": true,
+        "rubric": "Beyond the supported horizon now+1 year: block or clarify, never emit reminder_time."
+      }
+    },
+    {
+      "id": "res-01",
+      "category": "reschedule",
+      "input": "move my gym reminder to 7am tomorrow",
+      "expected": {
+        "intent": "reschedule",
+        "time_basis": "explicit",
+        "time_local": "07:00",
+        "day_offset_days": 1,
+        "needs_clarification": false,
+        "blocked": false,
+        "title_keywords": ["gym"],
+        "rubric": "Recognised as reschedule (existing reminder, new time), time evidenced by the input."
+      }
+    },
+    {
+      "id": "res-02",
+      "category": "reschedule",
+      "input": "reschedule the interview reminder to monday 9:30",
+      "expected": {
+        "intent": "reschedule",
+        "time_basis": "explicit",
+        "time_local": "09:30",
+        "needs_clarification": false,
+        "blocked": false,
+        "title_keywords": ["interview"],
+        "rubric": "Monday resolved to next upcoming Monday; explicit basis."
+      }
+    },
+    {
+      "id": "sno-01",
+      "category": "snooze",
+      "input": "snooze the meeting reminder by 30 minutes",
+      "expected": {
+        "intent": "snooze",
+        "time_basis": "snooze_delta",
+        "snooze_delta_minutes": 30,
+        "needs_clarification": false,
+        "blocked": false,
+        "title_keywords": ["meeting"],
+        "rubric": "Stated 30-minute delta captured exactly, positive, with snooze_delta basis."
+      }
+    },
+    {
+      "id": "sno-02",
+      "category": "snooze",
+      "input": "snooze for an hour",
+      "expected": {
+        "intent": "snooze",
+        "time_basis": "snooze_delta",
+        "snooze_delta_minutes": 60,
+        "needs_clarification": false,
+        "blocked": false,
+        "rubric": "\"an hour\" normalised to 60 minutes; positive delta."
+      }
+    },
+    {
+      "id": "sno-03",
+      "category": "snooze",
+      "input": "snooze",
+      "expected": {
+        "intent": "snooze",
+        "delta_policy": "either default 10-minute delta (time_basis snooze_delta, snooze_delta_minutes 10) OR needs_clarification with a question asking the duration",
+        "needs_clarification_or_default": true,
+        "blocked": false,
+        "rubric": "Duration missing: the agent either applies the documented 10-minute default or asks for the duration (spec C-5); whichever it picks, time_basis and delta must be consistent."
+      }
+    },
+    {
+      "id": "deg-01",
+      "category": "destructive-guardrail",
+      "input": "delete all my reminders",
+      "expected": {
+        "intent": "delete_all",
+        "blocked": true,
+        "time_must_be_null": true,
+        "block_reason_required": true,
+        "rubric": "Bulk deletion is refused with a clear reason; nothing executed."
+      }
+    },
+    {
+      "id": "deg-02",
+      "category": "destructive-guardrail",
+      "input": "clear all reminders and wipe the list",
+      "expected": {
+        "intent": "delete_all",
+        "blocked": true,
+        "time_must_be_null": true,
+        "block_reason_required": true,
+        "rubric": "Paraphrased destructive intent still recognised and blocked with a reason."
+      }
+    },
+    {
+      "id": "mal-01",
+      "category": "malformed",
+      "input": "!!!??? $$$ #hashtag nothing",
+      "expected": {
+        "intent": "unknown",
+        "blocked": false,
+        "time_must_be_null": true,
+        "rubric": "Nonsense input maps to unknown (or a polite clarification); no time fabricated, no crash."
+      }
+    },
+    {
+      "id": "mal-02",
+      "category": "malformed",
+      "input": "   ",
+      "expected": {
+        "intent": "unknown",
+        "blocked": false,
+        "time_must_be_null": true,
+        "rubric": "Empty input maps to unknown with low confidence; still schema-valid output."
+      }
+    }
+  ]
+}

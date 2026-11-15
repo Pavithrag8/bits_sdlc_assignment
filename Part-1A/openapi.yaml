@@ -1,0 +1,232 @@
+openapi: 3.0.0
+info:
+  title: Tasks API
+  version: 1.0.0
+  description: >
+    Deterministic in-memory Tasks REST API (Part 1A single source of truth).
+    create / list / get / update / complete / delete-with-confirmation /
+    filter-by-status / overdue. Zero third-party dependencies; Node native
+    http only.
+servers:
+  - url: http://127.0.0.1:3000
+tags:
+  - name: tasks
+
+components:
+  schemas:
+    Task:
+      type: object
+      required: [id, title, completed]
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        priority:
+          type: string
+          enum: [low, medium, high]
+        due_date:
+          type: string
+          format: date
+          nullable: true
+        completed:
+          type: boolean
+    TaskInput:
+      type: object
+      required: [title]
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        priority:
+          type: string
+          enum: [low, medium, high]
+        due_date:
+          type: string
+          format: date
+          nullable: true
+    TaskUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        priority:
+          type: string
+          enum: [low, medium, high]
+        due_date:
+          type: string
+          format: date
+          nullable: true
+        completed:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+
+paths:
+  /tasks:
+    post:
+      tags: [tasks]
+      summary: Create a task
+      operationId: createTask
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskInput'
+      responses:
+        '201':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: Missing/invalid title, invalid priority or due_date, or malformed JSON
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    get:
+      tags: [tasks]
+      summary: List tasks (optionally filtered by status)
+      operationId: listTasks
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [all, pending, completed]
+            default: all
+      responses:
+        '200':
+          description: Array of tasks (empty array when none exist)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+
+  /tasks/{id}:
+    get:
+      tags: [tasks]
+      summary: Get a task by id
+      operationId: getTask
+      parameters:
+        - $ref: '#/components/parameters/TaskId'
+      responses:
+        '200':
+          description: The task
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    patch:
+      tags: [tasks]
+      summary: Update a task's fields (including toggling completed)
+      operationId: updateTask
+      parameters:
+        - $ref: '#/components/parameters/TaskId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskUpdate'
+      responses:
+        '200':
+          description: Updated task
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: Invalid field value
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags: [tasks]
+      summary: Delete a task (requires confirmation header)
+      operationId: deleteTask
+      parameters:
+        - $ref: '#/components/parameters/TaskId'
+        - name: X-Confirm
+          in: header
+          required: false
+          schema:
+            type: string
+          description: Must be exactly "true" to confirm the deletion.
+      responses:
+        '204':
+          description: Task deleted
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Deletion refused - missing or wrong confirmation header
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /tasks/overdue:
+    get:
+      tags: [tasks]
+      summary: List open tasks whose due_date is strictly before the reference now
+      operationId: overdueTasks
+      parameters:
+        - name: now
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          description: Reference instant (ISO-8601). Defaults to current UTC time.
+      responses:
+        '200':
+          description: Array of open overdue tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+
+components:
+  parameters:
+    TaskId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string

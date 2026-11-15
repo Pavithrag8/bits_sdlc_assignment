@@ -1,0 +1,14 @@
+{
+  "targetDir": "/home/adp/bits/assignment-1/Part-1A",
+  "checkedAt": "2026-11-15T17:17:33.933Z",
+  "staticPassed": true,
+  "dynamicPassed": true,
+  "passed": true,
+  "findings": [],
+  "testExecution": {
+    "passed": true,
+    "exitCode": 0,
+    "stdout": "✔ test_us1_ac1_create_valid_task_returns_201 (122.992427ms)\n✔ test_us1_ac2_missing_title_returns_400 (20.274068ms)\n✔ test_us2_ac1_list_returns_200 (22.69836ms)\n✔ test_us2_ac2_get_by_id (20.317112ms)\n✔ test_unknown_id_returns_404 (8.376041ms)\n✔ test_us2_ac3_filter_by_status (20.063907ms)\n✔ test_us3_ac1_patch_updates_task (12.226887ms)\n✔ test_us3_ac2_toggle_completed (15.030927ms)\n✔ test_us3_ac3_delete_requires_confirmation (13.644158ms)\n✔ test_us4_overdue (15.491189ms)\n✔ test_invalid_priority_returns_400 (8.153725ms)\n✔ test_malformed_json_returns_400 (6.40694ms)\nℹ tests 12\nℹ suites 0\nℹ pass 12\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 435.264211\n",
+    "stderr": ""
+  }
+}

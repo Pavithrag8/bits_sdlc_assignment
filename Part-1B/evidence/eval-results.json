@@ -1,0 +1,4353 @@
+{
+  "run_id": "Part-1B",
+  "timestamp": "2026-11-15T17:24:15.615Z",
+  "reference_now": "2026-11-15T17:24:15.601Z",
+  "backend": "seeded",
+  "probe": {
+    "backend": "seeded",
+    "key_free": false
+  },
+  "threshold": 0.9,
+  "scoring": {
+    "formula": "case = 0.40*L1 + 0.40*L2 + 0.20*L3; aggregate = mean; PASS iff aggregate >= threshold AND every L1 == 1.0 AND every L2 == 1.0"
+  },
+  "cases": [
+    {
+      "case_id": "ct-01",
+      "category": "normal-create",
+      "input": "remind me to water the plants",
+      "output": {
+        "intent": "create",
+        "title": "water the plants",
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": true,
+        "clarification_question": "When should I remind you about this? (day and/or time)",
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.45934035668615253
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=string"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.45934035668615253"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=true question=present"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected create, got create"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": true,
+            "detail": "expected needs_clarification=true, got true"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-TITLE-KEYWORDS",
+            "ok": true,
+            "detail": "keywords [\"water\",\"plants\"]: 2/2 hit in title=\"water the plants\""
+          }
+        ]
+      },
+      "score": 1,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": true,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "ct-02",
+      "category": "normal-create",
+      "input": "remind me to take the dog for a walk at 6:30 am on saturday",
+      "output": {
+        "intent": "create",
+        "title": "take the dog",
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": true,
+        "clarification_question": "You gave a time but no day — which day?",
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.5385143149644136
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=string"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.5385143149644136"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=true question=present"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 0.6,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected create, got create"
+          },
+          {
+            "code": "L3-TIME-BASIS",
+            "ok": false,
+            "detail": "expected explicit, got null"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": false,
+            "detail": "expected needs_clarification=false, got true"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-TITLE-KEYWORDS",
+            "ok": true,
+            "detail": "keywords [\"dog\",\"walk\"]: 1/2 hit in title=\"take the dog\""
+          }
+        ]
+      },
+      "score": 0.92,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": false,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "et-01",
+      "category": "explicit-time",
+      "input": "remind me to buy milk tomorrow at 10:15",
+      "output": {
+        "intent": "create",
+        "title": "BUY reminder",
+        "reminder_time": "2026-11-16T10:15:00+05:30",
+        "time_basis": "explicit",
+        "snooze_delta_minutes": null,
+        "needs_clarification": false,
+        "clarification_question": null,
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.9
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=string"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=\"explicit\""
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=object"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.9"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=\"2026-11-16T10:15:00+05:30\" (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=false question=absent"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "time claimed with time_basis=\"explicit\""
+          }
+        ]
+      },
+      "l3": {
+        "score": 0.8571428571428571,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected create, got create"
+          },
+          {
+            "code": "L3-TIME-BASIS",
+            "ok": true,
+            "detail": "expected explicit, got explicit"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": true,
+            "detail": "expected needs_clarification=false, got false"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-TITLE-KEYWORDS",
+            "ok": false,
+            "detail": "keywords [\"milk\"]: 0/1 hit in title=\"BUY reminder\""
+          },
+          {
+            "code": "L3-TIME-LOCAL",
+            "ok": true,
+            "detail": "expected local time 10:15, got 10:15"
+          },
+          {
+            "code": "L3-DAY-OFFSET",
+            "ok": true,
+            "detail": "expected day offset +1d from now, got 2026-11-16T10:15:00+05:30"
+          }
+        ]
+      },
+      "score": 0.9714285714285715,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": false,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "et-02",
+      "category": "explicit-time",
+      "input": "set a reminder for the dentist at 14:00",
+      "output": {
+        "intent": "create",
+        "title": "reminder the dentist",
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": true,
+        "clarification_question": "Impossible calendar instant detected — which valid date should I use?",
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.2638438577298075
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=string"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.2638438577298075"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=true question=present"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 0.6,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected create, got create"
+          },
+          {
+            "code": "L3-TIME-BASIS",
+            "ok": false,
+            "detail": "expected explicit, got null"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": false,
+            "detail": "expected needs_clarification=false, got true"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-TITLE-KEYWORDS",
+            "ok": true,
+            "detail": "keywords [\"dentist\"]: 1/1 hit in title=\"reminder the dentist\""
+          }
+        ]
+      },
+      "score": 0.92,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": false,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "rln-01",
+      "category": "relative-date-no-time",
+      "input": "call Mum tomorrow",
+      "output": {
+        "intent": "create",
+        "title": "MUM reminder",
+        "reminder_time": "2026-11-16T09:00:00+05:30",
+        "time_basis": "default_from_date",
+        "snooze_delta_minutes": null,
+        "needs_clarification": false,
+        "clarification_question": null,
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.9
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=string"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=\"default_from_date\""
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=object"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.9"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=\"2026-11-16T09:00:00+05:30\" (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=false question=absent"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "time claimed with time_basis=\"default_from_date\""
+          },
+          {
+            "code": "INV-3-DEFAULT-0900",
+            "ok": true,
+            "detail": "bare day named, no time stated ⇒ expected 09:00 default with basis=default_from_date and no clarification; got basis=default_from_date, local=09:00, clarify=false"
+          }
+        ]
+      },
+      "l3": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected create, got create"
+          },
+          {
+            "code": "L3-TIME-BASIS",
+            "ok": true,
+            "detail": "expected default_from_date, got default_from_date"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": true,
+            "detail": "expected needs_clarification=false, got false"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-TITLE-KEYWORDS",
+            "ok": true,
+            "detail": "keywords [\"call\",\"Mum\"]: 1/2 hit in title=\"MUM reminder\""
+          },
+          {
+            "code": "L3-TIME-LOCAL",
+            "ok": true,
+            "detail": "expected local time 09:00, got 09:00"
+          },
+          {
+            "code": "L3-DAY-OFFSET",
+            "ok": true,
+            "detail": "expected day offset +1d from now, got 2026-11-16T09:00:00+05:30"
+          }
+        ]
+      },
+      "score": 1,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": true,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "rln-02",
+      "category": "relative-date-no-time",
+      "input": "remind me about the bill on friday",
+      "output": {
+        "intent": "create",
+        "title": "THE reminder",
+        "reminder_time": "2026-11-20T09:00:00+05:30",
+        "time_basis": "default_from_date",
+        "snooze_delta_minutes": null,
+        "needs_clarification": false,
+        "clarification_question": null,
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.9
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=string"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=\"default_from_date\""
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=object"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.9"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=\"2026-11-20T09:00:00+05:30\" (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=false question=absent"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "time claimed with time_basis=\"default_from_date\""
+          },
+          {
+            "code": "INV-3-DEFAULT-0900",
+            "ok": true,
+            "detail": "bare day named, no time stated ⇒ expected 09:00 default with basis=default_from_date and no clarification; got basis=default_from_date, local=09:00, clarify=false"
+          }
+        ]
+      },
+      "l3": {
+        "score": 0.8333333333333334,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected create, got create"
+          },
+          {
+            "code": "L3-TIME-BASIS",
+            "ok": true,
+            "detail": "expected default_from_date, got default_from_date"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": true,
+            "detail": "expected needs_clarification=false, got false"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-TITLE-KEYWORDS",
+            "ok": false,
+            "detail": "keywords [\"bill\"]: 0/1 hit in title=\"THE reminder\""
+          },
+          {
+            "code": "L3-TIME-LOCAL",
+            "ok": true,
+            "detail": "expected local time 09:00, got 09:00"
+          }
+        ]
+      },
+      "score": 0.9666666666666668,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": false,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "rln-03",
+      "category": "relative-date-no-time",
+      "input": "remind me to renew the passport on 21st",
+      "output": {
+        "intent": "create",
+        "title": "renew the passport",
+        "reminder_time": "2026-11-21T09:00:00+05:30",
+        "time_basis": "default_from_date",
+        "snooze_delta_minutes": null,
+        "needs_clarification": false,
+        "clarification_question": null,
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.9
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=string"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=\"default_from_date\""
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=object"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.9"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=\"2026-11-21T09:00:00+05:30\" (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=false question=absent"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "time claimed with time_basis=\"default_from_date\""
+          }
+        ]
+      },
+      "l3": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected create, got create"
+          },
+          {
+            "code": "L3-TIME-BASIS",
+            "ok": true,
+            "detail": "expected default_from_date, got default_from_date"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": true,
+            "detail": "expected needs_clarification=false, got false"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-TITLE-KEYWORDS",
+            "ok": true,
+            "detail": "keywords [\"passport\",\"renew\"]: 2/2 hit in title=\"renew the passport\""
+          },
+          {
+            "code": "L3-TIME-LOCAL",
+            "ok": true,
+            "detail": "expected local time 09:00, got 09:00"
+          }
+        ]
+      },
+      "score": 1,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": true,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "amb-01",
+      "category": "ambiguous",
+      "input": "remind me to meet the team next week",
+      "output": {
+        "intent": "create",
+        "title": "MEET reminder",
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": true,
+        "clarification_question": "That span is too coarse — which day specifically?",
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.4653912000823766
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=string"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.4653912000823766"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=true question=present"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected create, got create"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": true,
+            "detail": "expected needs_clarification=true, got true"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-QUESTION-KEYWORDS",
+            "ok": true,
+            "detail": "keywords [\"day\",\"which\"]: 2/2 hit in question=\"That span is too coarse — which day specifically?\""
+          }
+        ]
+      },
+      "score": 1,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": true,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "amb-02",
+      "category": "ambiguous",
+      "input": "remind me about the thing we discussed",
+      "output": {
+        "intent": "create",
+        "title": "the thing discussed",
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": true,
+        "clarification_question": "When should I remind you about this? (day and/or time)",
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.3225576080614701
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=string"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.3225576080614701"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=true question=present"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected create, got create"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": true,
+            "detail": "expected needs_clarification=true, got true"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          }
+        ]
+      },
+      "score": 1,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": true,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "mm-01",
+      "category": "missing-mandatory",
+      "input": "remind me at 8pm",
+      "output": {
+        "intent": "unknown",
+        "title": null,
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": true,
+        "clarification_question": "What should I remind you about? (no subject found)",
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.47216362417675556
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"unknown\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=object"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=string"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.47216362417675556"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"unknown\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=true question=present"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 0.6666666666666666,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": false,
+            "detail": "expected create, got unknown"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": true,
+            "detail": "expected needs_clarification=true, got true"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          }
+        ]
+      },
+      "score": 0.9333333333333333,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": false,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "mm-02",
+      "category": "missing-mandatory",
+      "input": "remind me about lunch tomorrow",
+      "output": {
+        "intent": "create",
+        "title": "lunch tomorrow",
+        "reminder_time": "2026-11-16T09:00:00+05:30",
+        "time_basis": "default_from_date",
+        "snooze_delta_minutes": null,
+        "needs_clarification": false,
+        "clarification_question": null,
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.9
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=string"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=\"default_from_date\""
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=object"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.9"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=\"2026-11-16T09:00:00+05:30\" (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=false question=absent"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "time claimed with time_basis=\"default_from_date\""
+          },
+          {
+            "code": "INV-3-DEFAULT-0900",
+            "ok": true,
+            "detail": "bare day named, no time stated ⇒ expected 09:00 default with basis=default_from_date and no clarification; got basis=default_from_date, local=09:00, clarify=false"
+          }
+        ]
+      },
+      "l3": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected create, got create"
+          },
+          {
+            "code": "L3-TIME-BASIS",
+            "ok": true,
+            "detail": "expected default_from_date, got default_from_date"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": true,
+            "detail": "expected needs_clarification=false, got false"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-TITLE-KEYWORDS",
+            "ok": true,
+            "detail": "keywords [\"lunch\"]: 1/1 hit in title=\"lunch tomorrow\""
+          },
+          {
+            "code": "L3-TIME-LOCAL",
+            "ok": true,
+            "detail": "expected local time 09:00, got 09:00"
+          },
+          {
+            "code": "L3-DAY-OFFSET",
+            "ok": true,
+            "detail": "expected day offset +1d from now, got 2026-11-16T09:00:00+05:30"
+          }
+        ]
+      },
+      "score": 1,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": true,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "imp-01",
+      "category": "impossible-date",
+      "input": "remind me on 30th February",
+      "output": {
+        "intent": "unknown",
+        "title": null,
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": false,
+        "clarification_question": null,
+        "blocked": true,
+        "block_reason": "Impossible calendar instant refused.",
+        "confidence": 0.38676051765214653
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"unknown\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=object"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=object"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=string"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.38676051765214653"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"unknown\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=false question=absent"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 0.5,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": false,
+            "detail": "expected create, got unknown"
+          },
+          {
+            "code": "L3-TIME-NULL",
+            "ok": true,
+            "detail": "expected null reminder_time, got null"
+          }
+        ]
+      },
+      "score": 0.9,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": false,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "imp-02",
+      "category": "impossible-date",
+      "input": "remind me yesterday at 5pm about the package",
+      "output": {
+        "intent": "unknown",
+        "title": null,
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": true,
+        "clarification_question": "Unsupported past/far-future time. What date within the next year should I use?",
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.5333459965651854
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"unknown\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=object"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=string"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.5333459965651854"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"unknown\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=true question=present"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 0.5,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": false,
+            "detail": "expected create, got unknown"
+          },
+          {
+            "code": "L3-TIME-NULL",
+            "ok": true,
+            "detail": "expected null reminder_time, got null"
+          }
+        ]
+      },
+      "score": 0.9,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": false,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "imp-03",
+      "category": "impossible-date",
+      "input": "remind me to check the subscription in 5 years",
+      "output": {
+        "intent": "unknown",
+        "title": null,
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": true,
+        "clarification_question": "Unsupported past/far-future time. What date within the next year should I use?",
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.3381470033666119
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"unknown\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=object"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=string"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.3381470033666119"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"unknown\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=true question=present"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 0.5,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": false,
+            "detail": "expected create, got unknown"
+          },
+          {
+            "code": "L3-TIME-NULL",
+            "ok": true,
+            "detail": "expected null reminder_time, got null"
+          }
+        ]
+      },
+      "score": 0.9,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": false,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "res-01",
+      "category": "reschedule",
+      "input": "move my gym reminder to 7am tomorrow",
+      "output": {
+        "intent": "reschedule",
+        "title": "Rescheduled reminder",
+        "reminder_time": "2026-11-16T07:00:00+05:30",
+        "time_basis": "explicit",
+        "snooze_delta_minutes": null,
+        "needs_clarification": false,
+        "clarification_question": null,
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.85
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"reschedule\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=string"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=\"explicit\""
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=object"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.85"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"reschedule\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=\"2026-11-16T07:00:00+05:30\" (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=false question=absent"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "time claimed with time_basis=\"explicit\""
+          }
+        ]
+      },
+      "l3": {
+        "score": 0.8571428571428571,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected reschedule, got reschedule"
+          },
+          {
+            "code": "L3-TIME-BASIS",
+            "ok": true,
+            "detail": "expected explicit, got explicit"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": true,
+            "detail": "expected needs_clarification=false, got false"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-TITLE-KEYWORDS",
+            "ok": false,
+            "detail": "keywords [\"gym\"]: 0/1 hit in title=\"Rescheduled reminder\""
+          },
+          {
+            "code": "L3-TIME-LOCAL",
+            "ok": true,
+            "detail": "expected local time 07:00, got 07:00"
+          },
+          {
+            "code": "L3-DAY-OFFSET",
+            "ok": true,
+            "detail": "expected day offset +1d from now, got 2026-11-16T07:00:00+05:30"
+          }
+        ]
+      },
+      "score": 0.9714285714285715,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": false,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "res-02",
+      "category": "reschedule",
+      "input": "reschedule the interview reminder to monday 9:30",
+      "output": {
+        "intent": "reschedule",
+        "title": "Rescheduled reminder",
+        "reminder_time": "2026-11-16T09:30:00+05:30",
+        "time_basis": "explicit",
+        "snooze_delta_minutes": null,
+        "needs_clarification": false,
+        "clarification_question": null,
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.85
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"reschedule\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=string"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=\"explicit\""
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=object"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.85"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"reschedule\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=\"2026-11-16T09:30:00+05:30\" (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=false question=absent"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "time claimed with time_basis=\"explicit\""
+          }
+        ]
+      },
+      "l3": {
+        "score": 0.8333333333333334,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected reschedule, got reschedule"
+          },
+          {
+            "code": "L3-TIME-BASIS",
+            "ok": true,
+            "detail": "expected explicit, got explicit"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": true,
+            "detail": "expected needs_clarification=false, got false"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-TITLE-KEYWORDS",
+            "ok": false,
+            "detail": "keywords [\"interview\"]: 0/1 hit in title=\"Rescheduled reminder\""
+          },
+          {
+            "code": "L3-TIME-LOCAL",
+            "ok": true,
+            "detail": "expected local time 09:30, got 09:30"
+          }
+        ]
+      },
+      "score": 0.9666666666666668,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": false,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "sno-01",
+      "category": "snooze",
+      "input": "snooze the meeting reminder by 30 minutes",
+      "output": {
+        "intent": "snooze",
+        "title": "Snoozed reminder",
+        "reminder_time": null,
+        "time_basis": "snooze_delta",
+        "snooze_delta_minutes": 30,
+        "needs_clarification": false,
+        "clarification_question": null,
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.9
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"snooze\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=\"snooze_delta\""
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=30"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=object"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.9"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"snooze\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=false question=absent"
+          },
+          {
+            "code": "INV-8-SNOOZE-DELTA-POS",
+            "ok": true,
+            "detail": "delta=30"
+          },
+          {
+            "code": "INV-8-SNOOZE-BASIS",
+            "ok": true,
+            "detail": "basis consistent"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 0.8333333333333334,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected snooze, got snooze"
+          },
+          {
+            "code": "L3-TIME-BASIS",
+            "ok": true,
+            "detail": "expected snooze_delta, got snooze_delta"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": true,
+            "detail": "expected needs_clarification=false, got false"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-SNOOZE-DELTA",
+            "ok": true,
+            "detail": "expected 30, got 30"
+          },
+          {
+            "code": "L3-TITLE-KEYWORDS",
+            "ok": false,
+            "detail": "keywords [\"meeting\"]: 0/1 hit in title=\"Snoozed reminder\""
+          }
+        ]
+      },
+      "score": 0.9666666666666668,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": false,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "sno-02",
+      "category": "snooze",
+      "input": "snooze for an hour",
+      "output": {
+        "intent": "snooze",
+        "title": "Snooze",
+        "reminder_time": null,
+        "time_basis": "snooze_delta",
+        "snooze_delta_minutes": 60,
+        "needs_clarification": false,
+        "clarification_question": null,
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.9
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"snooze\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=\"snooze_delta\""
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=60"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=object"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.9"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"snooze\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=false question=absent"
+          },
+          {
+            "code": "INV-8-SNOOZE-DELTA-POS",
+            "ok": true,
+            "detail": "delta=60"
+          },
+          {
+            "code": "INV-8-SNOOZE-BASIS",
+            "ok": true,
+            "detail": "basis consistent"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected snooze, got snooze"
+          },
+          {
+            "code": "L3-TIME-BASIS",
+            "ok": true,
+            "detail": "expected snooze_delta, got snooze_delta"
+          },
+          {
+            "code": "L3-CLARIFY-FLAG",
+            "ok": true,
+            "detail": "expected needs_clarification=false, got false"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-SNOOZE-DELTA",
+            "ok": true,
+            "detail": "expected 60, got 60"
+          }
+        ]
+      },
+      "score": 1,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": true,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "sno-03",
+      "category": "snooze",
+      "input": "snooze",
+      "output": {
+        "intent": "snooze",
+        "title": null,
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": true,
+        "clarification_question": "No snooze duration given — how many minutes?",
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.6459010509308427
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"snooze\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=object"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=string"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.6459010509308427"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"snooze\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=true question=present"
+          },
+          {
+            "code": "INV-8-SNOOZE-DELTA-POS",
+            "ok": true,
+            "detail": "no delta claimed (default-or-ask policy applies)"
+          },
+          {
+            "code": "INV-8-SNOOZE-BASIS",
+            "ok": true,
+            "detail": "no delta, basis not required"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected snooze, got snooze"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-SNOOZE-POLICY",
+            "ok": true,
+            "detail": "policy requires default-10 delta (consistent basis) or a clarification question; got blocked=false delta=null basis=null clarify=true"
+          }
+        ]
+      },
+      "score": 1,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": true,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "deg-01",
+      "category": "destructive-guardrail",
+      "input": "delete all my reminders",
+      "output": {
+        "intent": "delete_all",
+        "title": null,
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": false,
+        "clarification_question": null,
+        "blocked": true,
+        "block_reason": "Bulk deletion of all reminders is not permitted by this agent.",
+        "confidence": 0.9217625491321088
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"delete_all\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=object"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=object"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=string"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.9217625491321088"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"delete_all\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=false question=absent"
+          },
+          {
+            "code": "INV-5-DESTRUCTIVE-BLOCKED",
+            "ok": true,
+            "detail": "blocked=true"
+          },
+          {
+            "code": "INV-5-DESTRUCTIVE-TIME-NULL",
+            "ok": true,
+            "detail": "reminder_time=null"
+          },
+          {
+            "code": "INV-5-DESTRUCTIVE-REASON",
+            "ok": true,
+            "detail": "block_reason=\"Bulk deletion of all reminders is not permitted by this agent.\""
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected delete_all, got delete_all"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=true, got true"
+          },
+          {
+            "code": "L3-BLOCK-REASON",
+            "ok": true,
+            "detail": "destructive case requires a block_reason"
+          },
+          {
+            "code": "L3-TIME-NULL",
+            "ok": true,
+            "detail": "expected null reminder_time, got null"
+          }
+        ]
+      },
+      "score": 1,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": true,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "deg-02",
+      "category": "destructive-guardrail",
+      "input": "clear all reminders and wipe the list",
+      "output": {
+        "intent": "delete_all",
+        "title": null,
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": false,
+        "clarification_question": null,
+        "blocked": true,
+        "block_reason": "Bulk deletion of all reminders is not permitted by this agent.",
+        "confidence": 0.9414506096625701
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"delete_all\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=object"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=object"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=string"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.9414506096625701"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"delete_all\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=false question=absent"
+          },
+          {
+            "code": "INV-5-DESTRUCTIVE-BLOCKED",
+            "ok": true,
+            "detail": "blocked=true"
+          },
+          {
+            "code": "INV-5-DESTRUCTIVE-TIME-NULL",
+            "ok": true,
+            "detail": "reminder_time=null"
+          },
+          {
+            "code": "INV-5-DESTRUCTIVE-REASON",
+            "ok": true,
+            "detail": "block_reason=\"Bulk deletion of all reminders is not permitted by this agent.\""
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected delete_all, got delete_all"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=true, got true"
+          },
+          {
+            "code": "L3-BLOCK-REASON",
+            "ok": true,
+            "detail": "destructive case requires a block_reason"
+          },
+          {
+            "code": "L3-TIME-NULL",
+            "ok": true,
+            "detail": "expected null reminder_time, got null"
+          }
+        ]
+      },
+      "score": 1,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": true,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "mal-01",
+      "category": "malformed",
+      "input": "!!!??? $$$ #hashtag nothing",
+      "output": {
+        "intent": "create",
+        "title": "HASHTAG reminder",
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": true,
+        "clarification_question": "No date given — when would you like the reminder?",
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.27883747399318964
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=string"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=string"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.27883747399318964"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"create\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=true question=present"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 0.6666666666666666,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": false,
+            "detail": "expected unknown, got create"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-TIME-NULL",
+            "ok": true,
+            "detail": "expected null reminder_time, got null"
+          }
+        ]
+      },
+      "score": 0.9333333333333333,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": false,
+      "backend": "seeded-candidate-fallback"
+    },
+    {
+      "case_id": "mal-02",
+      "category": "malformed",
+      "input": "   ",
+      "output": {
+        "intent": "unknown",
+        "title": null,
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": true,
+        "clarification_question": "Your message was empty — what reminder do you need?",
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.2269881176063791
+      },
+      "l1": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L1-IS-OBJECT",
+            "ok": true,
+            "detail": "output is a JSON object"
+          },
+          {
+            "code": "L1-REQUIRED-intent",
+            "ok": true,
+            "detail": "intent present"
+          },
+          {
+            "code": "L1-REQUIRED-title",
+            "ok": true,
+            "detail": "title present"
+          },
+          {
+            "code": "L1-REQUIRED-reminder_time",
+            "ok": true,
+            "detail": "reminder_time present"
+          },
+          {
+            "code": "L1-REQUIRED-time_basis",
+            "ok": true,
+            "detail": "time_basis present"
+          },
+          {
+            "code": "L1-REQUIRED-snooze_delta_minutes",
+            "ok": true,
+            "detail": "snooze_delta_minutes present"
+          },
+          {
+            "code": "L1-REQUIRED-needs_clarification",
+            "ok": true,
+            "detail": "needs_clarification present"
+          },
+          {
+            "code": "L1-REQUIRED-clarification_question",
+            "ok": true,
+            "detail": "clarification_question present"
+          },
+          {
+            "code": "L1-REQUIRED-blocked",
+            "ok": true,
+            "detail": "blocked present"
+          },
+          {
+            "code": "L1-REQUIRED-block_reason",
+            "ok": true,
+            "detail": "block_reason present"
+          },
+          {
+            "code": "L1-REQUIRED-confidence",
+            "ok": true,
+            "detail": "confidence present"
+          },
+          {
+            "code": "L1-INTENT-ENUM",
+            "ok": true,
+            "detail": "intent=\"unknown\""
+          },
+          {
+            "code": "L1-TITLE-TYPE",
+            "ok": true,
+            "detail": "title type=object"
+          },
+          {
+            "code": "L1-TIME-TYPE",
+            "ok": true,
+            "detail": "reminder_time type=object"
+          },
+          {
+            "code": "L1-BASIS-ENUM",
+            "ok": true,
+            "detail": "time_basis=null"
+          },
+          {
+            "code": "L1-DELTA-TYPE",
+            "ok": true,
+            "detail": "snooze_delta_minutes=null"
+          },
+          {
+            "code": "L1-CLARIFY-BOOL",
+            "ok": true,
+            "detail": "needs_clarification type=boolean"
+          },
+          {
+            "code": "L1-QUESTION-TYPE",
+            "ok": true,
+            "detail": "clarification_question type=string"
+          },
+          {
+            "code": "L1-BLOCKED-BOOL",
+            "ok": true,
+            "detail": "blocked type=boolean"
+          },
+          {
+            "code": "L1-REASON-TYPE",
+            "ok": true,
+            "detail": "block_reason type=object"
+          },
+          {
+            "code": "L1-CONFIDENCE",
+            "ok": true,
+            "detail": "confidence=0.2269881176063791"
+          }
+        ]
+      },
+      "l2": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "INV-1-INTENT",
+            "ok": true,
+            "detail": "intent=\"unknown\""
+          },
+          {
+            "code": "INV-2-ISO-BOUNDS",
+            "ok": true,
+            "detail": "reminder_time=null (now=2026-11-15T17:24:15.601Z)"
+          },
+          {
+            "code": "INV-4-CLARIFY-CONSISTENT",
+            "ok": true,
+            "detail": "needs_clarification=true question=present"
+          },
+          {
+            "code": "INV-7-TIME-EVIDENCE",
+            "ok": true,
+            "detail": "no time claimed — evidence not required"
+          }
+        ]
+      },
+      "l3": {
+        "score": 1,
+        "checks": [
+          {
+            "code": "L3-INTENT",
+            "ok": true,
+            "detail": "expected unknown, got unknown"
+          },
+          {
+            "code": "L3-BLOCKED",
+            "ok": true,
+            "detail": "expected blocked=false, got false"
+          },
+          {
+            "code": "L3-TIME-NULL",
+            "ok": true,
+            "detail": "expected null reminder_time, got null"
+          }
+        ]
+      },
+      "score": 1,
+      "l1_pass": true,
+      "l2_pass": true,
+      "l3_pass": true,
+      "backend": "seeded-candidate-fallback"
+    }
+  ],
+  "service_failures": [],
+  "aggregate": {
+    "threshold": 0.9,
+    "weights": {
+      "l1": 0.4,
+      "l2": 0.4,
+      "l3": 0.2
+    },
+    "mean": 0.967,
+    "all_l1": true,
+    "all_l2": true,
+    "pass": true,
+    "failing_cases": []
+  },
+  "final": "PASS",
+  "findings": []
+}

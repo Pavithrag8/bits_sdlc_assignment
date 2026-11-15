@@ -1,0 +1,7 @@
+# Never commit these
+node_modules/
+.env
+.env.*
+*.env
+# Spec Kit's init-options are environment-specific; keep the rest of .specify/
+!/.specify/.gitignore

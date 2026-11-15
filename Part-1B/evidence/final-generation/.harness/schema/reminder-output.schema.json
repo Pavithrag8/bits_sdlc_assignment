@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ReminderOutput",
+  "description": "Stable output contract of the non-deterministic NL Reminder Agent (spec .specify/specs/001-reminder-agent/spec.md, Key Entities / Output Schema Contract). Free-text fields vary between runs; fields, types, enums and bounds are frozen.",
+  "type": "object",
+  "required": [
+    "intent",
+    "title",
+    "reminder_time",
+    "time_basis",
+    "snooze_delta_minutes",
+    "needs_clarification",
+    "clarification_question",
+    "blocked",
+    "block_reason",
+    "confidence"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "intent": {
+      "enum": ["create", "reschedule", "snooze", "delete_all", "unknown"],
+      "description": "Supported intent enum (INV-1). Unrecognisable input must map to 'unknown'."
+    },
+    "title": {
+      "type": ["string", "null"],
+      "description": "Free-text reminder title. Null when no title can be derived."
+    },
+    "reminder_time": {
+      "type": ["string", "null"],
+      "description": "ISO-8601 datetime with offset, or null. When non-null it MUST parse and lie within [reference_now, reference_now + 1 year] (INV-2) and be evidenced by source (INV-7)."
+    },
+    "time_basis": {
+      "enum": ["explicit", "default_from_date", "snooze_delta", null],
+      "description": "Why the reminder_time has the value it has (INV-7): explicit text, the 09:00 date-only default, or a snooze delta. Null when reminder_time is null."
+    },
+    "snooze_delta_minutes": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "description": "Positive integer when intent=snooze (INV-8). Null otherwise."
+    },
+    "needs_clarification": {
+      "type": "boolean"
+    },
+    "clarification_question": {
+      "type": ["string", "null"],
+      "description": "Free text. Must be a non-null question whenever needs_clarification is true (INV-4)."
+    },
+    "blocked": {
+      "type": "boolean"
+    },
+    "block_reason": {
+      "type": ["string", "null"],
+      "description": "Free text. Must be non-null whenever blocked is true (INV-5/INV-6)."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}

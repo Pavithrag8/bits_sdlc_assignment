@@ -1,0 +1,107 @@
+{
+  "mode": "repair-cycle-offline",
+  "reference_now": "2026-11-15T17:22:40.059Z",
+  "max_attempts": 2,
+  "scoring": {
+    "weights": {
+      "l1": 0.4,
+      "l2": 0.4,
+      "l3": 0.2
+    },
+    "threshold": 0.9,
+    "rule": "aggregate = mean(case 0.40*L1 + 0.40*L2 + 0.20*L3); PASS iff aggregate >= 0.90 AND all L1 == 1.0 AND all L2 == 1.0",
+    "declared_in": ".specify/specs/001-reminder-agent/spec.md §Evaluation Threshold (before evaluation)"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "backend": "seeded-candidate-fallback",
+      "generation_succeeded": true,
+      "service_failures": [],
+      "boundary_cases": [
+        "rln-01",
+        "rln-02",
+        "mm-02"
+      ],
+      "aggregate": 0.989,
+      "threshold": 0.9,
+      "all_l1": true,
+      "all_l2": true,
+      "final": "PASS",
+      "failing_cases": [],
+      "eval_failures": [
+        {
+          "case_id": "rln-02",
+          "input": "remind me about the bill on friday",
+          "generated_output": {
+            "intent": "create",
+            "title": "THE reminder",
+            "reminder_time": "2026-11-20T09:00:00+05:30",
+            "time_basis": "default_from_date",
+            "snooze_delta_minutes": null,
+            "needs_clarification": false,
+            "clarification_question": null,
+            "blocked": false,
+            "block_reason": null,
+            "confidence": 0.9
+          },
+          "score": 0.9666666666666668,
+          "failed_layers": [
+            {
+              "layer": "L3",
+              "failed": [
+                "L3-TITLE-KEYWORDS"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "backend": "seeded-candidate-fallback",
+      "generation_succeeded": true,
+      "service_failures": [],
+      "boundary_cases": [
+        "rln-01",
+        "rln-02",
+        "mm-02"
+      ],
+      "aggregate": 0.989,
+      "threshold": 0.9,
+      "all_l1": true,
+      "all_l2": true,
+      "final": "PASS",
+      "failing_cases": [],
+      "eval_failures": [
+        {
+          "case_id": "rln-02",
+          "input": "remind me about the bill on friday",
+          "generated_output": {
+            "intent": "create",
+            "title": "THE reminder",
+            "reminder_time": "2026-11-20T09:00:00+05:30",
+            "time_basis": "default_from_date",
+            "snooze_delta_minutes": null,
+            "needs_clarification": false,
+            "clarification_question": null,
+            "blocked": false,
+            "block_reason": null,
+            "confidence": 0.9
+          },
+          "score": 0.9666666666666668,
+          "failed_layers": [
+            {
+              "layer": "L3",
+              "failed": [
+                "L3-TITLE-KEYWORDS"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "final_status": "SUCCESS",
+  "success_attempt": 2
+}

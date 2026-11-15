@@ -1,0 +1,39 @@
+{
+  "mode": "deterministic-runner",
+  "spec": "openapi.yaml",
+  "source": "openapi.yaml + .harness/style-guide.md + .harness/harness-rules.md + .harness/generation-task.md",
+  "generation": "deterministic (no LLM, no network call)",
+  "maxAttempts": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "generationSucceeded": false,
+      "generationOutcome": "first cut: 45 test blocks -> dropped 1 (DELETE confirmation test), no 409/204 assertions",
+      "staticPassed": false,
+      "dynamicPassed": false,
+      "passed": false,
+      "sensorExitCode": 1,
+      "findings": [
+        {
+          "code": "MISSING_409_ASSERTION",
+          "message": "Missing exact assertion: assert.strictEqual(response.status, 409);"
+        },
+        {
+          "code": "MISSING_204_ASSERTION",
+          "message": "Missing exact assertion: assert.strictEqual(response.status, 204);"
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "generationSucceeded": true,
+      "generationOutcome": "repaired artifact set (all endpoints + exact assertions present)",
+      "staticPassed": true,
+      "dynamicPassed": true,
+      "passed": true,
+      "sensorExitCode": 0,
+      "findings": []
+    }
+  ],
+  "finalStatus": "SUCCESS"
+}
