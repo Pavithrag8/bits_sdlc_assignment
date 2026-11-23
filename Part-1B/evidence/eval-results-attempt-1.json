@@ -7,14 +7,14 @@
       "output": {
         "intent": "create",
         "title": "MUM reminder",
-        "reminder_time": "2026-11-16T09:00:00+05:30",
-        "time_basis": "default_from_date",
+        "reminder_time": null,
+        "time_basis": null,
         "snooze_delta_minutes": null,
-        "needs_clarification": false,
-        "clarification_question": null,
+        "needs_clarification": true,
+        "clarification_question": "Which time on that day should I use?",
         "blocked": false,
         "block_reason": null,
-        "confidence": 0.9
+        "confidence": 0.2966923509258777
       },
       "l1": {
         "score": 1,
@@ -87,12 +87,12 @@
           {
             "code": "L1-TIME-TYPE",
             "ok": true,
-            "detail": "reminder_time type=string"
+            "detail": "reminder_time type=object"
           },
           {
             "code": "L1-BASIS-ENUM",
             "ok": true,
-            "detail": "time_basis=\"default_from_date\""
+            "detail": "time_basis=null"
           },
           {
             "code": "L1-DELTA-TYPE",
@@ -107,7 +107,7 @@
           {
             "code": "L1-QUESTION-TYPE",
             "ok": true,
-            "detail": "clarification_question type=object"
+            "detail": "clarification_question type=string"
           },
           {
             "code": "L1-BLOCKED-BOOL",
@@ -122,12 +122,12 @@
           {
             "code": "L1-CONFIDENCE",
             "ok": true,
-            "detail": "confidence=0.9"
+            "detail": "confidence=0.2966923509258777"
           }
         ]
       },
       "l2": {
-        "score": 1,
+        "score": 0.8,
         "checks": [
           {
             "code": "INV-1-INTENT",
@@ -137,27 +137,27 @@
           {
             "code": "INV-2-ISO-BOUNDS",
             "ok": true,
-            "detail": "reminder_time=\"2026-11-16T09:00:00+05:30\" (now=2026-11-15T17:22:40.066Z)"
+            "detail": "reminder_time=null (now=2026-11-22T04:22:26.351Z)"
           },
           {
             "code": "INV-4-CLARIFY-CONSISTENT",
             "ok": true,
-            "detail": "needs_clarification=false question=absent"
+            "detail": "needs_clarification=true question=present"
           },
           {
             "code": "INV-7-TIME-EVIDENCE",
             "ok": true,
-            "detail": "time claimed with time_basis=\"default_from_date\""
+            "detail": "no time claimed — evidence not required"
           },
           {
             "code": "INV-3-DEFAULT-0900",
-            "ok": true,
-            "detail": "bare day named, no time stated ⇒ expected 09:00 default with basis=default_from_date and no clarification; got basis=default_from_date, local=09:00, clarify=false"
+            "ok": false,
+            "detail": "bare day named, no time stated ⇒ expected 09:00 default with basis=default_from_date and no clarification; got basis=null, local=n/a, clarify=true"
           }
         ]
       },
       "l3": {
-        "score": 1,
+        "score": 0.6,
         "checks": [
           {
             "code": "L3-INTENT",
@@ -166,13 +166,13 @@
           },
           {
             "code": "L3-TIME-BASIS",
-            "ok": true,
-            "detail": "expected default_from_date, got default_from_date"
+            "ok": false,
+            "detail": "expected default_from_date, got null"
           },
           {
             "code": "L3-CLARIFY-FLAG",
-            "ok": true,
-            "detail": "expected needs_clarification=false, got false"
+            "ok": false,
+            "detail": "expected needs_clarification=false, got true"
           },
           {
             "code": "L3-BLOCKED",
@@ -183,23 +183,13 @@
             "code": "L3-TITLE-KEYWORDS",
             "ok": true,
             "detail": "keywords [\"call\",\"Mum\"]: 1/2 hit in title=\"MUM reminder\""
-          },
-          {
-            "code": "L3-TIME-LOCAL",
-            "ok": true,
-            "detail": "expected local time 09:00, got 09:00"
-          },
-          {
-            "code": "L3-DAY-OFFSET",
-            "ok": true,
-            "detail": "expected day offset +1d from now, got 2026-11-16T09:00:00+05:30"
           }
         ]
       },
-      "score": 1,
+      "score": 0.8400000000000001,
       "l1_pass": true,
-      "l2_pass": true,
-      "l3_pass": true
+      "l2_pass": false,
+      "l3_pass": false
     },
     {
       "case_id": "rln-02",
@@ -208,14 +198,14 @@
       "output": {
         "intent": "create",
         "title": "THE reminder",
-        "reminder_time": "2026-11-20T09:00:00+05:30",
-        "time_basis": "default_from_date",
+        "reminder_time": null,
+        "time_basis": null,
         "snooze_delta_minutes": null,
-        "needs_clarification": false,
-        "clarification_question": null,
+        "needs_clarification": true,
+        "clarification_question": "What time should I set that reminder for?",
         "blocked": false,
         "block_reason": null,
-        "confidence": 0.9
+        "confidence": 0.5550197960576042
       },
       "l1": {
         "score": 1,
@@ -288,12 +278,12 @@
           {
             "code": "L1-TIME-TYPE",
             "ok": true,
-            "detail": "reminder_time type=string"
+            "detail": "reminder_time type=object"
           },
           {
             "code": "L1-BASIS-ENUM",
             "ok": true,
-            "detail": "time_basis=\"default_from_date\""
+            "detail": "time_basis=null"
           },
           {
             "code": "L1-DELTA-TYPE",
@@ -308,7 +298,7 @@
           {
             "code": "L1-QUESTION-TYPE",
             "ok": true,
-            "detail": "clarification_question type=object"
+            "detail": "clarification_question type=string"
           },
           {
             "code": "L1-BLOCKED-BOOL",
@@ -323,12 +313,12 @@
           {
             "code": "L1-CONFIDENCE",
             "ok": true,
-            "detail": "confidence=0.9"
+            "detail": "confidence=0.5550197960576042"
           }
         ]
       },
       "l2": {
-        "score": 1,
+        "score": 0.8,
         "checks": [
           {
             "code": "INV-1-INTENT",
@@ -338,27 +328,27 @@
           {
             "code": "INV-2-ISO-BOUNDS",
             "ok": true,
-            "detail": "reminder_time=\"2026-11-20T09:00:00+05:30\" (now=2026-11-15T17:22:40.066Z)"
+            "detail": "reminder_time=null (now=2026-11-22T04:22:26.351Z)"
           },
           {
             "code": "INV-4-CLARIFY-CONSISTENT",
             "ok": true,
-            "detail": "needs_clarification=false question=absent"
+            "detail": "needs_clarification=true question=present"
           },
           {
             "code": "INV-7-TIME-EVIDENCE",
             "ok": true,
-            "detail": "time claimed with time_basis=\"default_from_date\""
+            "detail": "no time claimed — evidence not required"
           },
           {
             "code": "INV-3-DEFAULT-0900",
-            "ok": true,
-            "detail": "bare day named, no time stated ⇒ expected 09:00 default with basis=default_from_date and no clarification; got basis=default_from_date, local=09:00, clarify=false"
+            "ok": false,
+            "detail": "bare day named, no time stated ⇒ expected 09:00 default with basis=default_from_date and no clarification; got basis=null, local=n/a, clarify=true"
           }
         ]
       },
       "l3": {
-        "score": 0.8333333333333334,
+        "score": 0.4,
         "checks": [
           {
             "code": "L3-INTENT",
@@ -367,13 +357,13 @@
           },
           {
             "code": "L3-TIME-BASIS",
-            "ok": true,
-            "detail": "expected default_from_date, got default_from_date"
+            "ok": false,
+            "detail": "expected default_from_date, got null"
           },
           {
             "code": "L3-CLARIFY-FLAG",
-            "ok": true,
-            "detail": "expected needs_clarification=false, got false"
+            "ok": false,
+            "detail": "expected needs_clarification=false, got true"
           },
           {
             "code": "L3-BLOCKED",
@@ -384,17 +374,12 @@
             "code": "L3-TITLE-KEYWORDS",
             "ok": false,
             "detail": "keywords [\"bill\"]: 0/1 hit in title=\"THE reminder\""
-          },
-          {
-            "code": "L3-TIME-LOCAL",
-            "ok": true,
-            "detail": "expected local time 09:00, got 09:00"
           }
         ]
       },
-      "score": 0.9666666666666668,
+      "score": 0.8,
       "l1_pass": true,
-      "l2_pass": true,
+      "l2_pass": false,
       "l3_pass": false
     },
     {
@@ -404,14 +389,14 @@
       "output": {
         "intent": "create",
         "title": "lunch tomorrow",
-        "reminder_time": "2026-11-16T09:00:00+05:30",
-        "time_basis": "default_from_date",
+        "reminder_time": null,
+        "time_basis": null,
         "snooze_delta_minutes": null,
-        "needs_clarification": false,
-        "clarification_question": null,
+        "needs_clarification": true,
+        "clarification_question": "What time should I set that reminder for?",
         "blocked": false,
         "block_reason": null,
-        "confidence": 0.9
+        "confidence": 0.32889202497899533
       },
       "l1": {
         "score": 1,
@@ -484,12 +469,12 @@
           {
             "code": "L1-TIME-TYPE",
             "ok": true,
-            "detail": "reminder_time type=string"
+            "detail": "reminder_time type=object"
           },
           {
             "code": "L1-BASIS-ENUM",
             "ok": true,
-            "detail": "time_basis=\"default_from_date\""
+            "detail": "time_basis=null"
           },
           {
             "code": "L1-DELTA-TYPE",
@@ -504,7 +489,7 @@
           {
             "code": "L1-QUESTION-TYPE",
             "ok": true,
-            "detail": "clarification_question type=object"
+            "detail": "clarification_question type=string"
           },
           {
             "code": "L1-BLOCKED-BOOL",
@@ -519,12 +504,12 @@
           {
             "code": "L1-CONFIDENCE",
             "ok": true,
-            "detail": "confidence=0.9"
+            "detail": "confidence=0.32889202497899533"
           }
         ]
       },
       "l2": {
-        "score": 1,
+        "score": 0.8,
         "checks": [
           {
             "code": "INV-1-INTENT",
@@ -534,27 +519,27 @@
           {
             "code": "INV-2-ISO-BOUNDS",
             "ok": true,
-            "detail": "reminder_time=\"2026-11-16T09:00:00+05:30\" (now=2026-11-15T17:22:40.066Z)"
+            "detail": "reminder_time=null (now=2026-11-22T04:22:26.351Z)"
           },
           {
             "code": "INV-4-CLARIFY-CONSISTENT",
             "ok": true,
-            "detail": "needs_clarification=false question=absent"
+            "detail": "needs_clarification=true question=present"
           },
           {
             "code": "INV-7-TIME-EVIDENCE",
             "ok": true,
-            "detail": "time claimed with time_basis=\"default_from_date\""
+            "detail": "no time claimed — evidence not required"
           },
           {
             "code": "INV-3-DEFAULT-0900",
-            "ok": true,
-            "detail": "bare day named, no time stated ⇒ expected 09:00 default with basis=default_from_date and no clarification; got basis=default_from_date, local=09:00, clarify=false"
+            "ok": false,
+            "detail": "bare day named, no time stated ⇒ expected 09:00 default with basis=default_from_date and no clarification; got basis=null, local=n/a, clarify=true"
           }
         ]
       },
       "l3": {
-        "score": 1,
+        "score": 0.6,
         "checks": [
           {
             "code": "L3-INTENT",
@@ -563,13 +548,13 @@
           },
           {
             "code": "L3-TIME-BASIS",
-            "ok": true,
-            "detail": "expected default_from_date, got default_from_date"
+            "ok": false,
+            "detail": "expected default_from_date, got null"
           },
           {
             "code": "L3-CLARIFY-FLAG",
-            "ok": true,
-            "detail": "expected needs_clarification=false, got false"
+            "ok": false,
+            "detail": "expected needs_clarification=false, got true"
           },
           {
             "code": "L3-BLOCKED",
@@ -580,23 +565,13 @@
             "code": "L3-TITLE-KEYWORDS",
             "ok": true,
             "detail": "keywords [\"lunch\"]: 1/1 hit in title=\"lunch tomorrow\""
-          },
-          {
-            "code": "L3-TIME-LOCAL",
-            "ok": true,
-            "detail": "expected local time 09:00, got 09:00"
-          },
-          {
-            "code": "L3-DAY-OFFSET",
-            "ok": true,
-            "detail": "expected day offset +1d from now, got 2026-11-16T09:00:00+05:30"
           }
         ]
       },
-      "score": 1,
+      "score": 0.8400000000000001,
       "l1_pass": true,
-      "l2_pass": true,
-      "l3_pass": true
+      "l2_pass": false,
+      "l3_pass": false
     }
   ],
   "agg": {
@@ -606,35 +581,111 @@
       "l2": 0.4,
       "l3": 0.2
     },
-    "mean": 0.989,
+    "mean": 0.827,
     "all_l1": true,
-    "all_l2": true,
-    "pass": true,
-    "failing_cases": []
+    "all_l2": false,
+    "pass": false,
+    "failing_cases": [
+      "rln-01",
+      "rln-02",
+      "mm-02"
+    ]
   },
-  "nowIso": "2026-11-15T17:22:40.066Z",
+  "nowIso": "2026-11-22T04:22:26.351Z",
   "findings": [
+    {
+      "case_id": "rln-01",
+      "input": "call Mum tomorrow",
+      "generated_output": {
+        "intent": "create",
+        "title": "MUM reminder",
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": true,
+        "clarification_question": "Which time on that day should I use?",
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.2966923509258777
+      },
+      "score": 0.8400000000000001,
+      "failed_layers": [
+        {
+          "layer": "L2",
+          "failed": [
+            "INV-3-DEFAULT-0900"
+          ]
+        },
+        {
+          "layer": "L3",
+          "failed": [
+            "L3-TIME-BASIS",
+            "L3-CLARIFY-FLAG"
+          ]
+        }
+      ]
+    },
     {
       "case_id": "rln-02",
       "input": "remind me about the bill on friday",
       "generated_output": {
         "intent": "create",
         "title": "THE reminder",
-        "reminder_time": "2026-11-20T09:00:00+05:30",
-        "time_basis": "default_from_date",
+        "reminder_time": null,
+        "time_basis": null,
         "snooze_delta_minutes": null,
-        "needs_clarification": false,
-        "clarification_question": null,
+        "needs_clarification": true,
+        "clarification_question": "What time should I set that reminder for?",
         "blocked": false,
         "block_reason": null,
-        "confidence": 0.9
+        "confidence": 0.5550197960576042
       },
-      "score": 0.9666666666666668,
+      "score": 0.8,
       "failed_layers": [
+        {
+          "layer": "L2",
+          "failed": [
+            "INV-3-DEFAULT-0900"
+          ]
+        },
         {
           "layer": "L3",
           "failed": [
+            "L3-TIME-BASIS",
+            "L3-CLARIFY-FLAG",
             "L3-TITLE-KEYWORDS"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "mm-02",
+      "input": "remind me about lunch tomorrow",
+      "generated_output": {
+        "intent": "create",
+        "title": "lunch tomorrow",
+        "reminder_time": null,
+        "time_basis": null,
+        "snooze_delta_minutes": null,
+        "needs_clarification": true,
+        "clarification_question": "What time should I set that reminder for?",
+        "blocked": false,
+        "block_reason": null,
+        "confidence": 0.32889202497899533
+      },
+      "score": 0.8400000000000001,
+      "failed_layers": [
+        {
+          "layer": "L2",
+          "failed": [
+            "INV-3-DEFAULT-0900"
+          ]
+        },
+        {
+          "layer": "L3",
+          "failed": [
+            "L3-TIME-BASIS",
+            "L3-CLARIFY-FLAG"
           ]
         }
       ]

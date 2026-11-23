@@ -7,7 +7,7 @@
       "output": {
         "intent": "create",
         "title": "MUM reminder",
-        "reminder_time": "2026-11-16T09:00:00+05:30",
+        "reminder_time": "2026-11-23T09:00:00+05:30",
         "time_basis": "default_from_date",
         "snooze_delta_minutes": null,
         "needs_clarification": false,
@@ -137,7 +137,7 @@
           {
             "code": "INV-2-ISO-BOUNDS",
             "ok": true,
-            "detail": "reminder_time=\"2026-11-16T09:00:00+05:30\" (now=2026-11-15T17:22:40.082Z)"
+            "detail": "reminder_time=\"2026-11-23T09:00:00+05:30\" (now=2026-11-22T04:22:26.363Z)"
           },
           {
             "code": "INV-4-CLARIFY-CONSISTENT",
@@ -192,7 +192,7 @@
           {
             "code": "L3-DAY-OFFSET",
             "ok": true,
-            "detail": "expected day offset +1d from now, got 2026-11-16T09:00:00+05:30"
+            "detail": "expected day offset +1d from now, got 2026-11-23T09:00:00+05:30"
           }
         ]
       },
@@ -208,7 +208,7 @@
       "output": {
         "intent": "create",
         "title": "THE reminder",
-        "reminder_time": "2026-11-20T09:00:00+05:30",
+        "reminder_time": "2026-11-27T09:00:00+05:30",
         "time_basis": "default_from_date",
         "snooze_delta_minutes": null,
         "needs_clarification": false,
@@ -338,7 +338,7 @@
           {
             "code": "INV-2-ISO-BOUNDS",
             "ok": true,
-            "detail": "reminder_time=\"2026-11-20T09:00:00+05:30\" (now=2026-11-15T17:22:40.082Z)"
+            "detail": "reminder_time=\"2026-11-27T09:00:00+05:30\" (now=2026-11-22T04:22:26.363Z)"
           },
           {
             "code": "INV-4-CLARIFY-CONSISTENT",
@@ -404,7 +404,7 @@
       "output": {
         "intent": "create",
         "title": "lunch tomorrow",
-        "reminder_time": "2026-11-16T09:00:00+05:30",
+        "reminder_time": "2026-11-23T09:00:00+05:30",
         "time_basis": "default_from_date",
         "snooze_delta_minutes": null,
         "needs_clarification": false,
@@ -534,7 +534,7 @@
           {
             "code": "INV-2-ISO-BOUNDS",
             "ok": true,
-            "detail": "reminder_time=\"2026-11-16T09:00:00+05:30\" (now=2026-11-15T17:22:40.082Z)"
+            "detail": "reminder_time=\"2026-11-23T09:00:00+05:30\" (now=2026-11-22T04:22:26.363Z)"
           },
           {
             "code": "INV-4-CLARIFY-CONSISTENT",
@@ -589,7 +589,7 @@
           {
             "code": "L3-DAY-OFFSET",
             "ok": true,
-            "detail": "expected day offset +1d from now, got 2026-11-16T09:00:00+05:30"
+            "detail": "expected day offset +1d from now, got 2026-11-23T09:00:00+05:30"
           }
         ]
       },
@@ -612,7 +612,7 @@
     "pass": true,
     "failing_cases": []
   },
-  "nowIso": "2026-11-15T17:22:40.082Z",
+  "nowIso": "2026-11-22T04:22:26.363Z",
   "findings": [
     {
       "case_id": "rln-02",
@@ -620,7 +620,7 @@
       "generated_output": {
         "intent": "create",
         "title": "THE reminder",
-        "reminder_time": "2026-11-20T09:00:00+05:30",
+        "reminder_time": "2026-11-27T09:00:00+05:30",
         "time_basis": "default_from_date",
         "snooze_delta_minutes": null,
         "needs_clarification": false,

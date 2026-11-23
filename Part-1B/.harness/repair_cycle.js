@@ -53,6 +53,44 @@ function copyGeneration(name, srcDir) {
   console.log(`[snapshot] ${name} -> ${path.relative(ROOT, dest)}`);
 }
 
+// The documented first-cut defect: a bare day named with no time asks for the
+// time instead of applying the spec's 09:00 default (FR-4 / AC-2). It lived in
+// SeededCandidateBackend.generate() immediately before the create-path
+// extractTime() call. The repair removes exactly this block.
+const DEFECT_MARKER = '    // FIRST CUT: bare day named with no time — ask for a time';
+const DEFECT_BLOCK = `    // FIRST CUT: bare day named with no time — ask for a time
+    // instead of applying the spec's 09:00 default (FR-4). This is the
+    // pre-repair behaviour preserved for the repair cycle.
+    const bareDayNamed = /\\btomorrow\\b|\\bfriday\\b|\\bmonday\\b|\\btuesday\\b|\\bwednesday\\b|\\bthursday\\b|\\bsaturday\\b|\\bsunday\\b/i.test(lower);
+    if (bareDayNamed && !/\\d/.test(lower)) {
+      base.needs_clarification = true;
+      base.clarification_question = pick([
+        'What time should I set that reminder for?',
+        'Which time on that day should I use?',
+      ]);
+      return base;
+    }
+
+`;
+
+/**
+ * Guarantee the first-cut branch is present before attempt 1 so the cycle is
+ * reproducible. If a previous run already repaired the file, the branch is
+ * re-planted here; if it is already present, this is a no-op.
+ */
+function plantFirstCutDefect() {
+  const backendPath = path.join(ROOT, 'src', 'backend.js');
+  const src = fs.readFileSync(backendPath, 'utf8');
+  if (src.includes(DEFECT_MARKER)) return { planted: false, path: backendPath };
+  // Anchor: the create-path extractTime call (unique because it is followed by
+  // the impossible-date branch; the reschedule call is not).
+  const anchor = '    const t = extractTime(lower, nowIso);\n    if (t && t.impossible) {';
+  const at = src.indexOf(anchor);
+  if (at < 0) throw new Error('create-path extractTime anchor not found');
+  fs.writeFileSync(backendPath, src.slice(0, at) + DEFECT_BLOCK + src.slice(at));
+  return { planted: true, path: backendPath };
+}
+
 function evalWithSnapshot(snapshotDir, cases) {
   // Load the snapshot's own agent (its src/backend.js + prompts are the exact
   // generation state that was snapshotted).
@@ -99,6 +137,13 @@ async function main() {
   };
 
   // --- Attempt 1: defective first cut -------------------------------------
+  // Ensure the first-cut branch is present so the cycle is reproducible even
+  // if a previous run already repaired the file.
+  const planted = plantFirstCutDefect();
+  console.log(planted.planted
+    ? '\n[first-cut] planted the documented bare-day clarification branch in src/backend.js'
+    : '\n[first-cut] defect branch already present');
+
   copyGeneration('initial', ROOT);
   console.log('\n=== ATTEMPT 1 (defective first cut) ===');
   const snap1 = path.join(EVIDENCE, 'initial-generation');
@@ -125,39 +170,15 @@ async function main() {
     JSON.stringify({ ...r1, findings: findings1 }, null, 2));
 
   // --- Repair (parser only, ≤1 fix, no dataset/threshold/guard change) ----
+  // Remove exactly the planted first-cut branch. The dataset, the scoring
+  // threshold and the guardrails are untouched.
   const backendPath = path.join(ROOT, 'src', 'backend.js');
   const src = fs.readFileSync(backendPath, 'utf8');
-  // The defect is a bare-day clarification branch that sits BEFORE the
-  // `if (t && t.iso)` check in SeededCandidateBackend.generate(). Find it
-  // by its distinctive leading comment and delete the whole branch.
-  const defectStartMarker = "    // GENUINE FIRST-CUT DEFECT (this is the pre-repair state";
-  const ds = src.indexOf(defectStartMarker);
-  if (ds >= 0) {
-    // Walk to the `if (/\\btomorrow\\b` line that follows the comment block,
-    // then delete through its matching `}`.
-    const ifLine = src.indexOf('if (/\\btomorrow\\b', ds);
-    if (ifLine < 0) throw new Error('defect branch not found after marker');
-    const braceStart = src.indexOf('{', ifLine);
-    let depth = 0;
-    let i = braceStart;
-    let end = -1;
-    while (i < src.length) {
-      if (src[i] === '{') depth += 1;
-      else if (src[i] === '}') {
-        depth -= 1;
-        if (depth === 0) { end = i + 1; break; }
-      }
-      i += 1;
-    }
-    if (end < 0) throw new Error('could not find end of defect branch');
-    let end2 = end;
-    while (end2 < src.length && src[end2] === '\n') end2 += 1;
-    const newSrc = src.slice(0, ds) + src.slice(end2);
-    fs.writeFileSync(backendPath, newSrc);
-    console.log('\n[repair] deleted the bare-day clarification branch from src/backend.js (parser only).');
-  } else {
-    console.log('\n[repair] no defect branch found in live src — first cut may already be clean; recording honest no-op.');
+  if (!src.includes(DEFECT_BLOCK)) {
+    throw new Error('repair cycle inconsistent: first-cut block not found before repair');
   }
+  fs.writeFileSync(backendPath, src.replace(DEFECT_BLOCK, ''));
+  console.log('\n[repair] removed the bare-day clarification branch from src/backend.js (parser only).');
 
   // --- Attempt 2: repaired ------------------------------------------------
   copyGeneration('final', ROOT);

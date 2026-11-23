@@ -273,6 +273,19 @@ class SeededCandidateBackend {
       return base;
     }
 
+    // FIRST CUT: bare day named with no time — ask for a time
+    // instead of applying the spec's 09:00 default (FR-4). This is the
+    // pre-repair behaviour preserved for the repair cycle.
+    const bareDayNamed = /\btomorrow\b|\bfriday\b|\bmonday\b|\btuesday\b|\bwednesday\b|\bthursday\b|\bsaturday\b|\bsunday\b/i.test(lower);
+    if (bareDayNamed && !/\d/.test(lower)) {
+      base.needs_clarification = true;
+      base.clarification_question = pick([
+        'What time should I set that reminder for?',
+        'Which time on that day should I use?',
+      ]);
+      return base;
+    }
+
     const t = extractTime(lower, nowIso);
     if (t && t.impossible) {
       base.reminder_time = null;
